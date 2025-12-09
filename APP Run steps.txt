@@ -1,0 +1,1 @@
+After AAP run Zv documents will generate.now we goto FBPM1 we create batch job. Batch releaser can create batch and batch approver can approve batch. we can check and assign batch approver and batch release in Tcode PPOME. post batch approval we can check batch status as "Payment medium Created" in BNK_MONI. and DME xml file will generate. we can see the batch status from here.

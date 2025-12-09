@@ -1,0 +1,183 @@
+Entries in SAP FICO
+
+**Here’s a complete breakdown of FI-MM data entries in SAP FICO, including GST, withholding tax, and cash discounts, with examples for each scenario.**
+
+---
+
+## 🔄 FI-MM Integration: Key Transactions with Tax and Discount Elements
+
+### 1. **Purchase Order (PO) Creation**
+- *No FI entry generated.*
+- MM records expected costs and tax codes (e.g., GST).
+
+---
+
+### 2. **Goods Receipt (GR)**
+- **Debit:** Inventory (with GST if applicable)
+- **Credit:** GR/IR Clearing Account
+
+**Example:**
+- PO value: ₹100,000  
+- GST @18%: ₹18,000  
+- Entry:
+  - Debit: Inventory ₹100,000  
+  - Debit: Input GST ₹18,000  
+  - Credit: GR/IR ₹118,000  
+
+---
+
+### 3. **Invoice Receipt (IR)**
+- **Debit:** GR/IR Clearing  
+- **Credit:** Vendor  
+- **GST captured** in vendor invoice
+
+**Example:**
+- Vendor invoice matches PO: ₹118,000  
+- Entry:
+  - Debit: GR/IR ₹118,000  
+  - Credit: Vendor ₹118,000  
+
+---
+
+### 4. **Withholding Tax on Vendor Payment**
+- **Debit:** Vendor  
+- **Credit:** Bank  
+- **Credit:** Withholding Tax Payable
+
+**Example:**
+- Invoice: ₹118,000  
+- Withholding Tax @10%: ₹11,800  
+- Payment: ₹106,200  
+- Entry:
+  - Debit: Vendor ₹118,000  
+  - Credit: Bank ₹106,200  
+  - Credit: Withholding Tax ₹11,800  
+
+> Withholding tax is deducted from vendor payment and remitted to the government.
+
+---
+
+### 5. **Cash Discount on Vendor Payment**
+- **Debit:** Vendor  
+- **Credit:** Bank  
+- **Credit:** Cash Discount Received
+
+**Example:**
+- Invoice: ₹100,000  
+- Discount @2%: ₹2,000  
+- Payment: ₹98,000  
+- Entry:
+  - Debit: Vendor ₹100,000  
+  - Credit: Bank ₹98,000  
+  - Credit: Cash Discount ₹2,000  
+
+> Cash discounts are configured in payment terms and automatically applied during payment posting.
+
+---
+
+## 🧾 GST Accounting in FI-MM
+- **Input GST**: Recorded during GR or IR for purchases.
+- **Output GST**: Recorded during sales (FI-SD integration).
+- GST is posted to separate tax accounts for compliance and reporting.
+
+---
+
+## 🧮 Summary Table of FI-MM Entries with Tax and Discounts
+
+| Transaction        | Debit                          | Credit                          |
+|--------------------|--------------------------------|----------------------------------|
+| Goods Receipt       | Inventory, Input GST           | GR/IR                            |
+| Invoice Receipt     | GR/IR                          | Vendor                           |
+| Vendor Payment      | Vendor                         | Bank, Withholding Tax            |
+| Payment with Discount | Vendor                       | Bank, Cash Discount              |
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+**SAP FICO FI-SD integration involves financial entries triggered by sales transactions, including GST, withholding tax, and cash discounts. Here's a complete breakdown with examples.**
+
+---
+
+## 🧾 FI-SD Integration: Key Transactions and Accounting Entries
+
+### 1. **Sales Order Creation**
+- *No FI entry generated.*
+- SD records customer demand and pricing, including applicable GST.
+
+---
+
+### 2. **Delivery (Post Goods Issue)**
+- **Debit:** Cost of Goods Sold (COGS)  
+- **Credit:** Inventory
+
+**Example:**
+- Inventory value: ₹50,000  
+- Entry:
+  - Debit: COGS ₹50,000  
+  - Credit: Inventory ₹50,000  
+
+---
+
+### 3. **Billing (Invoice to Customer)**
+- **Debit:** Customer  
+- **Credit:** Revenue  
+- **Credit:** Output GST  
+- **Credit:** Withholding Tax Payable (if applicable)
+
+**Example:**
+- Sales value: ₹100,000  
+- GST @18%: ₹18,000  
+- Withholding Tax @10%: ₹10,000  
+- Entry:
+  - Debit: Customer ₹108,000  
+  - Credit: Revenue ₹100,000  
+  - Credit: Output GST ₹18,000  
+  - Credit: Withholding Tax ₹10,000  
+
+> The customer is billed ₹118,000, but ₹10,000 is withheld and paid to the government.
+
+---
+
+### 4. **Incoming Payment from Customer**
+- **Debit:** Bank  
+- **Credit:** Customer  
+- **Credit:** Cash Discount Received (if applicable)
+
+**Example with Cash Discount:**
+- Invoice: ₹118,000  
+- Discount @2%: ₹2,360  
+- Payment: ₹115,640  
+- Entry:
+  - Debit: Bank ₹115,640  
+  - Credit: Customer ₹118,000  
+  - Credit: Cash Discount ₹2,360  
+
+---
+
+## 📊 Summary Table of FI-SD Entries
+
+| Transaction         | Debit                          | Credit                          |
+|---------------------|--------------------------------|----------------------------------|
+| Delivery (PGI)       | COGS                           | Inventory                        |
+| Billing              | Customer                       | Revenue, Output GST, WHT         |
+| Incoming Payment     | Bank                           | Customer, Cash Discount          |
+
+---
+
+## 🧮 GST & Tax Handling in SD
+- **Output GST**: Posted during billing, credited to GST Payable.
+- **Withholding Tax**: Deducted from customer invoice if applicable.
+- **Cash Discounts**: Applied during payment posting based on payment terms.
+
+---
+
+## 🔧 SAP Transaction Codes
+- **VA01**: Create Sales Order  
+- **VL01N**: Post Goods Issue  
+- **VF01**: Create Billing Document  
+- **F-28**: Post Incoming Payment  
+- **J1IN**: GST Reporting (India-specific)
+

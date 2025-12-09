@@ -1,0 +1,40 @@
+Sap practice:
+
+company- Siva, Siva IT Solutions
+company code- SIVV
+business areas: SIVV, SIVK, SIVT, SIVD
+con BA: SIVV, SIVN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+prepare notes:
+
+Ledger
+business partner
+APP steps
+asset accounting technical clearing account
+DMEE
+IDOC
+New GL Concepts
+CCA,CEA,PCA,Internal orders
+
+

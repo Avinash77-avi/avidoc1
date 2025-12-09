@@ -1,0 +1,124 @@
+Support Tickets:
+
+Common SAP FICO Support Ticket Examples
+
+Mock Ticket #1: Vendor Payment Failure in F110
+
+Ticket ID: FICO-001
+
+Module: Accounts Payable
+
+Issue Summary: Vendor payment run executed via F110, but no accounting document was generated.
+
+Root Cause: Payment method was not correctly assigned to the house bank in FBZP.
+
+Resolution: Updated payment method configuration, reassigned the correct bank key, and re-executed the payment run.
+
+Impact: Enabled successful posting of vendor payments and avoided delays in financial processing.
+
+🧾 Mock Ticket #2: Asset Depreciation Not Posting
+
+Ticket ID: FICO-002
+
+Module: Asset Accounting
+
+Issue Summary: Depreciation run (AFAB) failed for certain assets.
+
+Root Cause: Assets were missing depreciation keys or had incorrect capitalization dates.
+
+Resolution: Reviewed asset master data, corrected depreciation keys, and re-executed AFAB.
+
+Impact: Accurate depreciation posted, ensuring compliance with financial reporting standards.
+
+🧾 Mock Ticket #3: GR/IR Account Not Clearing
+
+Ticket ID: FICO-003
+
+Module: General Ledger / MM Integration
+
+Issue Summary: GR/IR account not clearing due to mismatch in PO and invoice quantities.
+
+Root Cause: Invoice posted with incorrect quantity compared to goods receipt.
+
+Resolution: Coordinated with MM team to reverse and repost MIRO with correct quantity. Manual clearing performed for residual items.
+
+Impact: GR/IR account reconciled, improving accuracy of month-end reporting.
+
+
+4. Tax Code Missing During Invoice Posting
+
+Issue: User unable to post vendor invoice due to missing tax code.
+
+Resolution: Verified tax procedure assignment to company code and ensured tax codes were correctly maintained in FTXP. Provided training to users on selecting appropriate tax codes.
+
+5. GL Account Not Appearing in FB50
+
+Issue: User unable to find GL account in drop-down during manual posting.
+
+Resolution: Checked if GL account was created in the correct company code and chart of accounts. Guided user to switch from personal list to global list in F4 help.
+
+6. Foreign Currency Valuation Error
+
+Issue: FAGL_FCV run failed due to missing exchange rate.
+
+Resolution: Updated exchange rate in OB08 and ensured valuation areas were correctly configured. Re-executed the valuation successfully.
+
+7. Cost Center Not Assigned
+
+Issue: Error during posting due to missing cost center assignment.
+
+Resolution: Reviewed controlling settings and master data. Assigned appropriate cost center in the transaction or master record.
+
+8. Parked Document Not Visible for Approval
+
+Issue: Parked document not appearing in workflow inbox.
+
+Resolution: Checked workflow configuration and user roles. Re-triggered workflow or manually forwarded document for approval.
+
+
+
+Complicated SAP FICO Support Ticket Scenarios
+
+1. Intercompany Reconciliation Failure
+
+Issue: Intercompany transactions between two company codes were not reconciling due to missing configuration in the IC clearing accounts.
+
+Resolution: Analyzed document splitting, checked intercompany settings in OBYA, and corrected GL account assignments. Coordinated with both company code owners to reprocess transactions and ensure proper elimination in consolidation.
+
+2. Incorrect Exchange Rate Impacting Foreign Currency Valuation
+
+Issue: Month-end valuation (FAGL_FCV) posted incorrect unrealized gains/losses due to outdated exchange rates.
+
+Resolution: Investigated OB08 entries, identified missing rate types for specific currencies, and updated rates. Reversed incorrect valuation postings and re-executed the run with correct data.
+
+3. Asset Transfer Not Posting Correctly Across Company Codes
+
+Issue: Asset transfer between company codes failed with error “Transaction type not allowed for cross-company code transfer.”
+
+Resolution: Reviewed transaction types in AO73, ensured correct configuration in intercompany asset transfer settings, and validated asset master data. Coordinated with asset accounting and controlling teams to complete the transfer.
+
+4. Profit Center Not Deriving in Vendor Invoice
+
+Issue: Vendor invoice posted without profit center, causing issues in reporting and CO reconciliation.
+
+Resolution: Traced derivation logic using OKB9 and substitution rules in GGB1. Identified missing cost object assignment and updated master data to ensure automatic profit center derivation.
+
+5. Payment Medium File Not Generating in F110
+
+Issue: Payment run completed but no payment medium file was generated for bank transmission.
+
+Resolution: Checked DMEE tree configuration, payment method settings in FBZP, and house bank setup. Corrected format tree assignment and regenerated the file successfully.
+
+6. Document Splitting Inconsistency
+
+Issue: Document splitting failed during posting, causing imbalance in financial statements.
+
+Resolution: Reviewed splitting rules in SPRO, analyzed item categories and business transactions. Adjusted configuration and reprocessed the document with correct segment assignment.
+
+7. Tax Reporting Discrepancy in GST/VAT
+
+Issue: GST reports showed mismatched tax amounts due to incorrect tax code usage across transactions.
+
+Resolution: Audited tax procedure, validated FTXP and OBYZ settings, and corrected master data. Provided training to users and implemented validation rules to prevent future errors.
+
+

@@ -1,0 +1,71 @@
+Scenario 1 – SAP Purchase Order
+My client raised a PO at USD 13 for 60 quantities. A goods receipt MIGO transaction was done at that price. Now my client wants to do a MIRO transaction at USD 14 for 60 quantities.
+
+Two Solutions to this SAP FICO Issue
+(1) The price difference – At the time of the MIRO transaction, you have an option to post a price difference. In the MIRO transaction, enter the G/L account for the price difference and amount (i.e. $1).
+
+(2) Reversing MIGO and repost MIGO with the correct price – Reverse the MIGO entry, make changes in the PO (Purchase Order), then once again do the MIGO and MIRO transactions.
+
+
+
+1. What is your strongest areas in GL and Controlling?	
+
+GL, AP, AR, Banking, Tax, Asset Accounting
+CO: Cost center, Profit Center, Internal Order
+
+2. Do you have experience in S4HANA?	
+
+Yes, I have experience in S4HANA
+
+3. Major diff in Asset accounting in S4HANA?	
+
+Technical clearing account, Depreciation, close and open Asset fiscal year.
+
+4.DMEE Configuration 4-5 steps?Have you configured DME?	
+
+Below are the Configuration Objectives
+OBPM1 – Create Payment Medium Format
+FBZP- Link Payment Medium Output to Payment Method
+DMEE – Creation of DME Tree Structure and Format
+OBPM4 – create variant for Payment Medium Output separation
+
+5. To Trigger DMEE what is the configuration?	
+
+In the payment method we will update the DMEE file format (Use payment medium workbench format)
+
+6. Once Payment file is generated how the bank will know the file got generated in SAP?	
+
+Bank will never know whether file generated or not in SAP, we need to send the file to bank, we have options to send file to bank, in my project we used PI interface send file from SAP To bank server.
+
+7.Asset data migration ? How you will load the data into SAP system (2-3steps).How will you upload transaction data or Asset master data in LSMW?
+
+First we need to record the screen through LSMW (through which T.code we are loading) we need to record all the required (as per business need) fields then prepare the file then upload. Nearly 14 steps are there in LSMW before upload the file.
+
+8.What you know about banking? Tell us about EBS config steps?(6-7 steps)	
+
+1.Create House Bank and Account ID
+2. Account symbol creation
+3. Assign accounts to account symbol
+4. Create keys for posting rule
+5. Define posting rules
+6. Create transaction type
+7. Assign bank account to transaction types
+
+9.Have you done the Internal orders settlement?	
+
+By using KO88
+
+10.What kind of file formats are there in EBS?	
+
+BAI, BAI2, MT940, CAMT53 and Multi Cash formats.
+
+11. Can you tell about  steps of Activate methodology?	
+
+there are 6 phases in Activate methodology
+Discover phase
+Prepare phase
+Explore phase
+Realize phase
+Deploy phase
+Run phase
+

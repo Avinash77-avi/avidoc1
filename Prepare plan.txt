@@ -1,0 +1,16 @@
+1. Foriegn currency revaluation 1Day
+
+ All Data Entires ( FCR, P2P, O2C, TAX AND GST, CASH DISCOUNT, )
+
+2. APP, Dunning, DMEE, IDOC, EBS including configuration steps   2Days
+
+3. Integration with MM &SD, Price Variance     1Day
+
+4. BP, Ledgers, WHT (Vertex tax system), Landscapes, ASAP& Activate Methodology 1Day
+
+5. Asset Accounting, New GL concepts ( Document splitting, Parallel accounting, Segment Reporting, ) 1Day
+
+6. Basic Configurations ( COA, PPV, FSV, FYV, Accrual & Deferal, House banks, Document Types) 1Day
+
+7. Month and Year End activities, ECC to S4 Hana chnages, Tables 1Day
+
