@@ -1,0 +1,184 @@
+Foreign Currency Valuation (FCV)
+---
+
+## 🌍 Context: Foreign Currency Valuation (FCV) in SAP FICO
+- FCV is performed at **month-end or year-end** to revalue open items (like receivables, payables, or bank balances) in foreign currency.
+- The system compares the **transaction exchange rate** with the **closing exchange rate**.
+- Differences are posted as **realized gains/losses** (when payment is made) or **unrealized gains/losses** (when revaluation is done but not yet settled).
+
+---
+
+## 📊 Example Scenario
+- Vendor invoice booked: **USD 1,000**
+- Exchange rate at posting: **1 USD = 80 INR**
+- Invoice amount in INR: **80,000 INR**
+- Payment date exchange rate: **1 USD = 82 INR**
+- Payment amount in INR: **82,000 INR**
+
+---
+
+## 🧾 SAP FICO Entries
+
+### 1. At Invoice Posting
+```
+Dr Expense A/c                  80,000 INR
+    Cr Vendor A/c (USD)         80,000 INR
+```
+
+### 2. At Payment (Realized Gain/Loss)
+Payment made at 82,000 INR, but liability was 80,000 INR → **2,000 INR loss**.
+
+```
+Dr Vendor A/c                   80,000 INR
+Dr Exchange Loss A/c             2,000 INR
+    Cr Bank A/c                  82,000 INR
+```
+
+If instead the rate was **78 INR**, then you’d have a **realized gain**:
+
+```
+Dr Vendor A/c                   80,000 INR
+    Cr Bank A/c                  78,000 INR
+    Cr Exchange Gain A/c          2,000 INR
+```
+
+---
+
+## 🔑 Key Points in SAP FICO FCV
+- **Unrealized gains/losses** are posted during revaluation runs (month-end).
+- **Realized gains/losses** are posted automatically when the foreign currency item is cleared (payment or receipt).
+- Accounts used:
+  - **Exchange Gain A/c**
+  - **Exchange Loss A/c**
+  - Defined in **OB09 (Account Determination for Exchange Differences)**.
+
+
+
+
+
+ **unrealized gain/loss entries for vendor open items** during **Foreign Currency Valuation (FCV)** in SAP FICO.
+
+---
+
+## 📊 Example Scenario
+- Vendor invoice: **USD 1,000**  
+- Exchange rate at invoice posting: **1 USD = 80 INR** → **80,000 INR**  
+- Closing rate at month-end: **1 USD = 82 INR** → **82,000 INR**  
+- Difference: **+2,000 INR (Unrealized Loss)**  
+
+---
+
+## 🧾 SAP FICO Accounting Entries
+
+### 1. At Invoice Posting
+```
+Dr Expense A/c                  80,000 INR
+    Cr Vendor A/c               80,000 INR
+```
+
+### 2. At Month-End FCV (Unrealized Loss)
+System revalues the open vendor item at closing rate (82 INR).  
+Liability increases by 2,000 INR → Unrealized loss.
+
+```
+Dr Unrealized Exchange Loss A/c   2,000 INR
+    Cr Vendor A/c (Payables)      2,000 INR
+```
+
+*(This entry is reversed automatically at the start of the next period.)*
+
+---
+
+## 📈 Unrealized Gain Example
+If the closing rate was **1 USD = 78 INR** → **78,000 INR**, liability decreases by 2,000 INR → Unrealized gain.
+
+```
+Dr Vendor A/c (Payables)          2,000 INR
+    Cr Unrealized Exchange Gain A/c   2,000 INR
+```
+
+
+
+
+
+
+
+
+
+
+FCV FOR CUSTOMER:- 
+
+
+**customer payment scenario** in SAP FICO where a **realized foreign exchange gain** occurs during clearing.  
+
+---
+
+## 📊 Example Scenario
+- Customer invoice: **USD 1,000**
+- Exchange rate at invoice posting: **1 USD = 80 INR**
+- Invoice amount in INR: **80,000 INR**
+- Exchange rate at payment receipt: **1 USD = 82 INR**
+- Payment received in INR: **82,000 INR**
+
+Here, the company gains **2,000 INR** because the customer paid at a stronger rate than when the invoice was booked.
+
+---
+
+## 🧾 SAP FICO Accounting Entries
+
+### 1. At Invoice Posting
+```
+Dr Customer A/c (Debtors)       80,000 INR
+    Cr Revenue A/c              80,000 INR
+```
+
+### 2. At Customer Payment (Realized Gain)
+Payment received at 82,000 INR, but receivable was 80,000 INR → **2,000 INR gain**.
+
+```
+Dr Bank A/c                     82,000 INR
+    Cr Customer A/c             80,000 INR
+    Cr Exchange Gain A/c         2,000 INR
+```
+
+**unrealized gain/loss entries** for a **customer open item** during **Foreign Currency Valuation (FCV)** in SAP FICO.  
+
+---
+
+## 📊 Example Scenario
+- Customer invoice: **USD 1,000**  
+- Exchange rate at invoice posting: **1 USD = 80 INR** → **80,000 INR**  
+- Closing rate at month-end: **1 USD = 82 INR** → **82,000 INR**  
+- Difference: **+2,000 INR (Unrealized Gain)**  
+
+---
+
+## 🧾 SAP FICO Accounting Entries
+
+### 1. At Invoice Posting
+```
+Dr Customer A/c (Debtors)       80,000 INR
+    Cr Revenue A/c              80,000 INR
+```
+
+### 2. At Month-End FCV (Unrealized Gain)
+System revalues the open customer item at closing rate (82 INR).  
+Receivable increases by 2,000 INR → Unrealized gain.
+
+```
+Dr Customer A/c (Debtors)        2,000 INR
+    Cr Unrealized Exchange Gain A/c   2,000 INR
+```
+
+*(This entry is reversed automatically at the start of the next period.)*
+
+---
+
+## 📉 Unrealized Loss Example
+If the closing rate was **1 USD = 78 INR** → **78,000 INR**, the receivable decreases by 2,000 INR → Unrealized loss.
+
+```
+Dr Unrealized Exchange Loss A/c   2,000 INR
+    Cr Customer A/c (Debtors)     2,000 INR
+```
+
